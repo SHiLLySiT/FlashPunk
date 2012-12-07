@@ -391,7 +391,31 @@
 			}
 			return null;
 		}
-
+		
+		/**
+		 * Returns the first Entity that collides with the rectangular area of the specified type(s).
+		 * @param	types		An array of types to check for
+		 * @param	rX			X position of the rectangle.
+		 * @param	rY			Y position of the rectangle.
+		 * @param	rWidth		Width of the rectangle.
+		 * @param	rHeight		Height of the rectangle.
+		 * @return	The first Entity to collide, or null if none collide.
+		 */
+		public function collideRectTypes(types:Array, rX:Number, rY:Number, rWidth:Number, rHeight:Number):Entity
+		{
+			for each (var type:String in types)
+			{
+				var e:Entity = _typeFirst[type];
+				while (e)
+				{
+					if (e.collideRect(e.x, e.y, rX, rY, rWidth, rHeight)) return e;
+					e = e._typeNext;
+				}
+			}
+			
+			return null;
+		}
+		
 		/**
 		 * Returns the first Entity found that collides with the position.
 		 * @param	type		The Entity type to check for.
