@@ -554,6 +554,17 @@
 		}
 		
 		/**
+		 * Returns a pseudo-random uint between the specified number
+		 * @param	amount		The returned uint will always be min <= uint < max.
+		 * @return	The uint.
+		 */
+		public static function randRange(min:uint, max:uint):uint
+		{
+			_seed = (_seed * 16807) % 2147483647;
+			return (_seed / 2147483647) * (max - min) + min;	
+		}
+		
+		/**
 		 * Returns the next item after current in the list of options.
 		 * @param	current		The currently selected item (must be one of the options).
 		 * @param	options		An array of all the items to cycle through.
