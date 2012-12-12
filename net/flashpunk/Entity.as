@@ -90,6 +90,22 @@ package net.flashpunk
 		}
 		
 		/**
+		 * Returns true if the mouse location is within the entity's hitbox
+		 */
+		public function get isMouseOver():Boolean
+		{
+			if (world)
+			{
+				if (world.mouseX > x - originX && world.mouseX < x - originX + width && world.mouseY > y - originY && world.mouseY < y - originY + height)
+				{
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
+		/**
 		 * Registers an event listener object with an EventDispatcher object so that the listener receives notification of an event.
 		 * @param	type
 		 * @param	listener
