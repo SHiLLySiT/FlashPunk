@@ -558,10 +558,10 @@
 		 * @param	amount		The returned uint will always be min <= uint < max.
 		 * @return	The uint.
 		 */
-		public static function randRange(min:uint, max:uint):uint
+		public static function randRange(min:Number, max:Number):Number
 		{
-			_seed = (_seed * 16807) % 2147483647;
-			return (_seed / 2147483647) * (max - min) + min;	
+			_seed = (_seed * 16807.0) % 2147483647.0;
+			return (_seed / 2147483647.0) * (max - min) + min;	
 		}
 		
 		/**
