@@ -465,6 +465,7 @@ package net.flashpunk
 		 */
 		public function get onCamera():Boolean
 		{
+			if (!_world) return false;
 			return collideRect(x, y, _world.camera.x, _world.camera.y, FP.width, FP.height);
 		}
 		
