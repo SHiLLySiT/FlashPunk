@@ -464,7 +464,7 @@
 			var e:Entity = _typeFirst[type];
 			while (e)
 			{
-				if (e.collideRect(e.x, e.y, rX, rY, rWidth, rHeight)) return e;
+				if (e.collidable && e.collideRect(e.x, e.y, rX, rY, rWidth, rHeight)) return e;
 				e = e._typeNext;
 			}
 			return null;
@@ -506,7 +506,7 @@
 			var e:Entity = _typeFirst[type];
 			while (e)
 			{
-				if (e.collidePoint(e.x, e.y, pX, pY)) return e;
+				if (e.collidable && e.collidePoint(e.x, e.y, pX, pY)) return e;
 				e = e._typeNext;
 			}
 			return null;
@@ -519,8 +519,8 @@
 		 * @param	fromY		Start y of the line.
 		 * @param	toX			End x of the line.
 		 * @param	toY			End y of the line.
-		 * @param	precision		
-		 * @param	p
+		 * @param	precision	Distance between consecutive tests. Higher values are faster but increase the chance of missing collisions.
+		 * @param	p			If non-null, will have its x and y values set to the point of collision.
 		 * @return
 		 */
 		public function collideLine(type:String, fromX:int, fromY:int, toX:int, toY:int, precision:uint = 1, p:Point = null):Entity
@@ -660,7 +660,7 @@
 					n:uint = into.length;
 				while (e)
 				{
-					if (e.collideRect(e.x, e.y, rX, rY, rWidth, rHeight)) into[n ++] = e;
+					if (e.collidable && e.collideRect(e.x, e.y, rX, rY, rWidth, rHeight)) into[n ++] = e;
 					e = e._typeNext;
 				}
 			}
@@ -683,7 +683,7 @@
 					n:uint = into.length;
 				while (e)
 				{
-					if (e.collidePoint(e.x, e.y, pX, pY)) into[n ++] = e;
+					if (e.collidable && e.collidePoint(e.x, e.y, pX, pY)) into[n ++] = e;
 					e = e._typeNext;
 				}
 			}
