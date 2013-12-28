@@ -1,5 +1,6 @@
 ﻿package net.flashpunk 
 {
+	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.display.Stage;
@@ -132,6 +133,29 @@
 		{
 			if (_world == value) return;
 			_goto = value;
+		}
+		
+		public static function getScaledBitmapData(source:*, scaleX:Number, scaleY:Number):BitmapData
+		{
+			var sourceBitmapdata:BitmapData
+			if (source is Class)
+			{
+				var sourceBitmap:Bitmap = new source();
+				sourceBitmapdata = sourceBitmap.bitmapData;
+			}
+			else if (source is BitmapData)
+			{
+				sourceBitmapdata = source;
+			}
+			else
+			{
+				throw new Error("Invalid source image.");
+			}
+			var matrix:Matrix = new Matrix();
+			matrix.scale(scaleX, scaleY);
+			var scaledBitmapdata:BitmapData = new BitmapData(sourceBitmapdata.width * scaleX, sourceBitmapdata.height * scaleY, true, 0x000000);
+			scaledBitmapdata.draw(sourceBitmapdata, matrix);
+			return scaledBitmapdata;
 		}
 		
 		/**
